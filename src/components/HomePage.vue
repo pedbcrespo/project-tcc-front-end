@@ -3,10 +3,7 @@
     <title-header />
     <div v-if="isFormVisible">
       <form>
-        <div v-for=" question in questions" class="form-check form-check-inline" :key="question.id">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" v-model="question.answer">
-          <label class="form-check-label" for="inlineRadio1"> {{question.description}} </label>
-        </div>
+        
       </form>
     </div>
   </div>
@@ -15,17 +12,14 @@
 <script>
 import TitleHeader from './TitleHeader.vue';
 import BackendService from '@/service/backendService';
-import questions from '@/static/questions';
 import Question from '@/model/Questions';
+import Question from './Question.vue';
 
 export default {
   name: 'home-page',
-  components: { TitleHeader },
+  components: { TitleHeader, Question },
   mounted(){
-    console.log('INICIANDO')
-    for(let i in questions) {
-      questions.push(new Question(i, questions[i]))
-    }
+    console.log('INICIANDO');
   },
   data() {
     return {
@@ -55,4 +49,4 @@ li {
 a {
   color: #42b983;
 }
-</style>
+</style>@/static/textQuestions
