@@ -3,7 +3,9 @@
     <title-header />
     <div v-if="isFormVisible">
       <form>
-
+        <div v-for="(question, i) in questions" :key="i">
+          <form-question :question="question" @update:question="updateQuestion($event, i)" />
+        </div>
       </form>
     </div>
   </div>
@@ -12,12 +14,12 @@
 <script>
 import TitleHeader from './TitleHeader.vue';
 import BackendService from '@/service/backendService';
-// import StructQuestion from '@/model/StructQuestion';
-// import FormQuestion from './FormQuestion.vue';
+import text_questions from '@/static/text_questions';
+import FormQuestion from './FormQuestion.vue';
 
 export default {
   name: 'home-page',
-  components: { TitleHeader },
+  components: { TitleHeader, FormQuestion },
   data() {
     return {
       isFormVisible: true,
@@ -30,36 +32,13 @@ export default {
     console.log('INICIANDO');
     this.service.getCities('RJ').then(res => {
       this.cities = res.data;
-      console.log(this.cities);
     });
-    this.getQuestions();
+    this.questions = text_questions;
+    console.log(this.questions)
   },
   methods: {
-    requestQuestions(callback) {
-      const pathJsonFile = 'src/static/text_questions.json'     
-      const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          const json = JSON.parse(xhr.responseText);
-          callback(null, json);
-        } else if (xhr.readyState === 4) {
-          callback(new Error('Erro ao ler o arquivo JSON'));
-        }
-      },
-        xhr.open('GET', pathJsonFile, true);
-      xhr.responseType = 'text';
-      xhr.send();
-    },
-    getQuestions() {
-      const callback = function(err, data) {
-        if(err)
-          console.error(err);
-        else{
-          console.log(data)
-          return data;
-        }
-      } 
-      this.requestQuestions(callback);
+    updateQuestion(updatedQuestion, index) {
+      this.questions[index] = updatedQuestion;
     }
   }
 }
@@ -83,4 +62,4 @@ li {
 a {
   color: #42b983;
 }
-</style>@/static/textQuestions@/model/Question./FormQuestion.vue
+</style>
