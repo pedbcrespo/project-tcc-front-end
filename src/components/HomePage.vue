@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="home">
     <title-header />
-    <div v-if="isFormVisible">
-      <form>
+    <div v-if="isFormVisible" class="container-form">
+      <h3 class="title-form">Quiz</h3>
+      <form class="form-ttt" @submit.prevent="getRecomendation">
         <div v-for="(question, i) in questions" :key="i">
           <form-question :question="question" @update:question="updateQuestion($event, i)" />
         </div>
+        <input class="btn btn-outline-secondary" type="submit" value="Submit">
       </form>
     </div>
   </div>
@@ -30,36 +32,35 @@ export default {
   },
   mounted() {
     console.log('INICIANDO');
-    this.service.getCities('RJ').then(res => {
-      this.cities = res.data;
-    });
     this.questions = text_questions;
-    console.log(this.questions)
   },
   methods: {
     updateQuestion(updatedQuestion, index) {
       this.questions[index] = updatedQuestion;
+    },
+    getRecomendation() {
+      let answeredQuestions = this.questions.filter(question => question.answer)
+      if(answeredQuestions.length == 0) return; 
+      console.log(answeredQuestions);
     }
   }
 }
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container-form {
+  align-items: center;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+.title-form {
+  margin-top: 10px;
+  text-align: center;
 }
+.form-ttt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
 }
 </style>
