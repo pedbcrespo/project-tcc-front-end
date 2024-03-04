@@ -1,9 +1,8 @@
 <template>
     <div class="question">
-        <h5 class="title-question">{{ question.title }}</h5>
+        <p class="title-question">{{ question.title }}</p>
         <div v-for="(alternative, i) in question.alternatives" class="form-check form-check-inline" :key="i">
-            <input class="form-check-input" type="radio" :id="'alternative_' + i" :value="alternative"
-                v-model="selectedAlternative">
+            <input class="form-check-input" type="radio" :id="'alternative_' + i" :value="alternative" v-model="selectedAlternative">
             <label class="form-check-label" :for="'alternative_' + i">{{ alternative }}</label>
         </div>
     </div>

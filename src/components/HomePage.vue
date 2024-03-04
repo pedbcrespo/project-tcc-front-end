@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <title-header />
+    
     <div v-if="isFormVisible" class="container-form">
       <h3 class="title-form">Quiz</h3>
       <form class="form-ttt" @submit.prevent="getRecomendation">
@@ -9,6 +10,9 @@
         </div>
         <input class="btn btn-outline-secondary" type="submit" value="Submit">
       </form>
+    </div>
+    <div v-else>
+      <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
     </div>
   </div>
 </template>
@@ -42,6 +46,10 @@ export default {
       let answeredQuestions = this.questions.filter(question => question.answer)
       if(answeredQuestions.length == 0) return; 
       console.log(answeredQuestions);
+      this.isFormVisible = false;
+    },
+    comeBack() {
+      this.isFormVisible = true;
     }
   }
 }
