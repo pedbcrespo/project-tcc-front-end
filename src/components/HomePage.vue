@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <title-header />
-    
     <div v-if="isFormVisible" class="container-form">
       <h3 class="title-form">Quiz</h3>
       <form class="form-ttt" @submit.prevent="getRecomendation">
@@ -35,8 +34,8 @@ export default {
     }
   },
   mounted() {
-    console.log('INICIANDO');
     this.questions = text_questions;
+    this.$refs.instructionsModal.open();
   },
   methods: {
     updateQuestion(updatedQuestion, index) {
@@ -44,8 +43,7 @@ export default {
     },
     getRecomendation() {
       let answeredQuestions = this.questions.filter(question => question.answer)
-      if(answeredQuestions.length == 0) return; 
-      console.log(answeredQuestions);
+      if (answeredQuestions.length == 0) return;
       this.service.getRecomendation(answeredQuestions);
       this.isFormVisible = false;
     },
@@ -57,13 +55,16 @@ export default {
 </script>
 
 <style scoped>
-.container-form, .recomendation {
+.container-form,
+.recomendation {
   align-items: center;
 }
+
 .title-form {
   margin-top: 10px;
   text-align: center;
 }
+
 .form-ttt {
   display: flex;
   align-items: center;
