@@ -11,7 +11,7 @@
         <input class="btn btn-outline-secondary" type="submit" value="Submit">
       </form>
     </div>
-    <div v-else>
+    <div class="recomendation" v-else>
       <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
     </div>
   </div>
@@ -46,6 +46,7 @@ export default {
       let answeredQuestions = this.questions.filter(question => question.answer)
       if(answeredQuestions.length == 0) return; 
       console.log(answeredQuestions);
+      this.service.getRecomendation(answeredQuestions);
       this.isFormVisible = false;
     },
     comeBack() {
@@ -56,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-.container-form {
+.container-form, .recomendation {
   align-items: center;
 }
 .title-form {
