@@ -68,9 +68,11 @@ export default {
 .form-ttt {
   display: flex;
   align-items: center;
+  margin-left: 39%;
   justify-content: center;
   flex-direction: column;
   padding: 10px;
-
+  width: 350px;
+  flex-wrap: wrap;
 }
 </style>
