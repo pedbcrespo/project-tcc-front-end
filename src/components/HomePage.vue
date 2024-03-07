@@ -10,7 +10,7 @@
         <input class="btn btn-outline-secondary" type="submit" value="Submit">
       </form>
     </div>
-    <div class="recomendation" v-else>
+    <div class="recomendation-button" v-else>
       <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
     </div>
   </div>
@@ -58,7 +58,8 @@ export default {
 
 <style scoped>
 .container-form,
-.recomendation {
+.recomendation-button {
+  margin-top: 10px;
   align-items: center;
 }
 
@@ -74,7 +75,7 @@ export default {
   justify-content: center;
   flex-direction: column;
   padding: 10px;
-  width: 350px;
+  max-width: 400px;
   flex-wrap: wrap;
 }
 </style>
