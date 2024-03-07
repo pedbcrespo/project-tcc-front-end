@@ -19,8 +19,8 @@
 <script>
 import TitleHeader from './TitleHeader.vue';
 import BackendService from '@/service/backendService';
-import text_questions from '@/static/text_questions';
 import FormQuestion from './FormQuestion.vue';
+import Question from '@/model/AnsweredQuestion';
 
 export default {
   name: 'home-page',
@@ -34,7 +34,9 @@ export default {
     }
   },
   mounted() {
-    this.questions = text_questions;
+    this.service.getQuestions().then(res => {
+      this.questions = res.data.map(textQuestion => new Question(textQuestion))
+    });
     this.$refs.instructionsModal.open();
   },
   methods: {

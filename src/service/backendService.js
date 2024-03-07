@@ -12,4 +12,8 @@ export default class BackendService {
     getRecomendation(formAnswers) {
         return axios.post(`${this.url}/city/recomendation`, formAnswers)
     }
+
+    getQuestions() {
+        return axios.get(`${this.url}/questions`)
+    }
 }

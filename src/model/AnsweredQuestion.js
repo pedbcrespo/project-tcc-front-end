@@ -1,7 +1,7 @@
 export default class Question {
-    constructor(id, description) {
-        this.id = id;
-        this.description = description;
-        this.answer = null; 
+    constructor(title) {
+        this.title = title;
+        this.alternatives = [1, 2, 3, 4, 5]
+        this.answer = null;
     }
 }
