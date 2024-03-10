@@ -10,8 +10,16 @@
         <input class="btn btn-outline-secondary" type="submit" value="Submit">
       </form>
     </div>
-    <div class="recomendation-button" v-else>
-      <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
+    <div class="city-recomended" v-else>
+      <div v-if="isLoading" class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div v-else>
+        
+        <div class="recomendation-button">
+          <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,9 +36,11 @@ export default {
   data() {
     return {
       isFormVisible: true,
+      isLoading: false,
       service: new BackendService(),
       questions: [],
-      cities: [],
+      recomendations: [],
+      recomendation: null,
     }
   },
   mounted() {
@@ -44,9 +54,13 @@ export default {
       this.questions[index] = updatedQuestion;
     },
     getRecomendation() {
+      this.isLoading = true;
       let answeredQuestions = this.questions.filter(question => question.answer)
       if (answeredQuestions.length == 0) return;
-      this.service.getRecomendation(answeredQuestions);
+      this.service.getRecomendation(answeredQuestions).then(res => {
+        this.recomendations = res.data;
+        this.isLoading = false;
+      });
       this.isFormVisible = false;
     },
     comeBack() {
