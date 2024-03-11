@@ -14,8 +14,15 @@
       <div v-if="isLoading" class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
-      <div v-else>
-        
+      <div v-else class="recomendation">
+        <h2>{{recomendation.name}}</h2>
+        <ul>
+          <li>{{recomendaton.idh}}</li>
+          <li>{{recomendaton.avg_coust_living_price}}</li>
+          <li>{{recomendaton.avg_price}}</li>
+          <li>{{recomendaton.business_accessibility}}</li>
+          <li>{{recomendaton.recreation_rate}}</li>
+        </ul>
         <div class="recomendation-button">
           <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
         </div>
