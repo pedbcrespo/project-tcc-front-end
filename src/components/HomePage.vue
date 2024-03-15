@@ -15,14 +15,16 @@
         <span class="visually-hidden">Loading...</span>
       </div>
       <div v-else class="recomendation">
-        <!-- <h2>{{recomendation.name}}</h2>
-        <ul>
-          <li>{{recomendaton.idh}}</li>
-          <li>{{recomendaton.avg_coust_living_price}}</li>
-          <li>{{recomendaton.avg_price}}</li>
-          <li>{{recomendaton.business_accessibility}}</li>
-          <li>{{recomendaton.recreation_rate}}</li>
-        </ul> -->
+        <div v-if="recomendation">
+          <h2>{{getFirstRecomendation.name}}</h2>
+          <ul>
+            <li>{{getFirstRecomendation.idh}}</li>
+            <li>{{getFirstRecomendation.avg_coust_living_price}}</li>
+            <li>{{getFirstRecomendation.avg_price}}</li>
+            <li>{{getFirstRecomendation.business_accessibility}}</li>
+            <li>{{getFirstRecomendation.recreation_rate}}</li>
+          </ul>
+        </div>
         <div class="recomendation-button">
           <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
         </div>
@@ -36,10 +38,16 @@ import TitleHeader from './TitleHeader.vue';
 import BackendService from '@/service/backendService';
 import FormQuestion from './FormQuestion.vue';
 import Question from '@/model/AnsweredQuestion';
+import Recomendation from '@/model/Recomendation';
 
 export default {
   name: 'home-page',
   components: { TitleHeader, FormQuestion },
+  computed: {
+    getFirstRecomendation() {
+      return this.recomendation;
+    }
+  },
   data() {
     return {
       isFormVisible: true,
@@ -65,7 +73,9 @@ export default {
       let answeredQuestions = this.questions.filter(question => question.answer)
       if (answeredQuestions.length == 0) return;
       this.service.getRecomendation(answeredQuestions).then(res => {
-        this.recomendations = res.data;
+        this.recomendations = res.data.map(cityInfo => new Recomendation(cityInfo));
+        this.recomendation = this.recomendations.length > 0 ? this.recomendations[0]: undefined;
+        console.log(this.recomendation)
         this.isLoading = false;
       });
       this.isFormVisible = false;
