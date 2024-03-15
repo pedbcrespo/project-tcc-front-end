@@ -1,32 +1,34 @@
 <template>
   <div class="home">
     <title-header />
-    <div v-if="isFormVisible" class="container-form">
-      <h3 class="title-form">Quiz</h3>
-      <form class="form-ttt" @submit.prevent="getRecomendation">
-        <div v-for="(question, i) in questions" :key="i">
-          <form-question :question="question" @update:question="updateQuestion($event, i)" />
-        </div>
-        <input class="btn btn-outline-secondary" type="submit" value="Submit">
-      </form>
-    </div>
-    <div class="city-recomended" v-else>
-      <div v-if="isLoading" class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <div class="content">
+      <div v-if="isFormVisible" class="container-form">
+        <h2 class="title-form">Quiz</h2>
+        <form class="form-ttt" @submit.prevent="getRecomendation">
+          <div v-for="(question, i) in questions" :key="i">
+            <form-question :question="question" @update:question="updateQuestion($event, i)" />
+          </div>
+          <input class="btn btn-outline-secondary" type="submit" value="Submit">
+        </form>
       </div>
-      <div v-else class="recomendation">
-        <div v-if="recomendation">
-          <h2>{{getFirstRecomendation.name}}</h2>
-          <ul>
-            <li>{{getFirstRecomendation.idh}}</li>
-            <li>{{getFirstRecomendation.avg_coust_living_price}}</li>
-            <li>{{getFirstRecomendation.avg_price}}</li>
-            <li>{{getFirstRecomendation.business_accessibility}}</li>
-            <li>{{getFirstRecomendation.recreation_rate}}</li>
-          </ul>
+      <div class="city-recomended" v-else>
+        <div v-if="isLoading" class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
-        <div class="recomendation-button">
-          <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
+        <div v-else class="recomendation">
+          <div v-if="recomendation">
+            <h2>{{getFirstRecomendation.name}}</h2>
+            <ul>
+              <li>{{getFirstRecomendation.idh}}</li>
+              <li>{{getFirstRecomendation.avg_coust_living_price}}</li>
+              <li>{{getFirstRecomendation.avg_price}}</li>
+              <li>{{getFirstRecomendation.business_accessibility}}</li>
+              <li>{{getFirstRecomendation.recreation_rate}}</li>
+            </ul>
+          </div>
+          <div class="recomendation-button">
+            <input class="btn btn-outline-secondary" type="submit" value="Voltar" @click="comeBack">
+          </div>
         </div>
       </div>
     </div>
@@ -97,16 +99,28 @@ export default {
 .title-form {
   margin-top: 10px;
   text-align: center;
+  font-weight: bold;
+  font-size: 35pt;
 }
 
 .form-ttt {
   display: flex;
   align-items: center;
-  margin-left: 39%;
   justify-content: center;
   flex-direction: column;
   padding: 10px;
-  max-width: 400px;
+  max-width: 500px;
   flex-wrap: wrap;
+}
+
+.container-form, .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  margin-top: 3%;
 }
 </style>
