@@ -42,7 +42,6 @@ import BackendService from '@/service/backendService';
 import FormQuestion from './FormQuestion.vue';
 import Question from '@/model/AnsweredQuestion';
 import Recomendation from '@/model/Recomendation';
-import recomendationMock from '@/static/recomendationMock';
 
 export default {
   name: 'home-page',
@@ -54,12 +53,12 @@ export default {
   },
   data() {
     return {
-      isFormVisible: false,
+      isFormVisible: true,
       isLoading: false,
       service: new BackendService(),
       questions: [],
       recomendations: [],
-      recomendation: recomendationMock,
+      recomendation: null,
     }
   },
   mounted() {
