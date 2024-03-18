@@ -6,7 +6,7 @@ export default class Recomendation {
         this.recreation_rate = recomendationResult? recomendationResult.recreation_rate : null;
         this.business_accessibility = recomendationResult? recomendationResult.business_accessibility : null;
         this.avg_price = recomendationResult? recomendationResult.avg_price : null;
-        this.avg_coust_living_price = recomendationResult? recomendationResult.avg_avg_coust_living_priceprice : null;
+        this.avg_coust_living_price = recomendationResult? recomendationResult.avg_coust_living_price : null;
         this.enterprises_amount = recomendationResult? recomendationResult.enterprises_amount : null;
         this.enterprisesmost_current_type_enterprises_amount = recomendationResult? recomendationResult.enterprises_amount : null;
     }
