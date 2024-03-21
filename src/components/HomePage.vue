@@ -17,14 +17,14 @@
         </div>
         <div v-else class="recomendation">
           <div v-if="recomendation">
-            <h1 class="result"><b>{{getFirstRecomendation.name}}</b>:</h1>
+            <h1 class="result"><b>{{ getFirstRecomendation.name }}</b>:</h1>
             <h2 class="attributes"><b>Atributos</b></h2>
             <ul class="info-city">
-              <li><b>IDH:</b> {{getFirstRecomendation.idh}}</li>
-              <li><b>Custo de vida:</b> {{getFirstRecomendation.avg_coust_living_price}}</li>
-              <li><b>Custo médio dos imóveis:</b> {{getFirstRecomendation.avg_price}}</li>
-              <li><b>Acessibilidade de empresas:</b> {{getFirstRecomendation.business_accessibility}}</li>
-              <li><b>Indice de entreterimento:</b> {{getFirstRecomendation.recreation_rate}}</li>
+              <li><b>IDH:</b> {{ getFirstRecomendation.idh }}</li>
+              <li><b>Custo de vida:</b> {{ getFirstRecomendation.avg_coust_living_price }}</li>
+              <li><b>Custo médio dos imóveis:</b> {{ getFirstRecomendation.avg_price }}</li>
+              <li><b>Acessibilidade de empresas:</b> {{ getFirstRecomendation.business_accessibility }}</li>
+              <li><b>Indice de entreterimento:</b> {{ getFirstRecomendation.recreation_rate }}</li>
             </ul>
           </div>
           <div class="recomendation-button">
@@ -76,7 +76,7 @@ export default {
       if (answeredQuestions.length == 0) return;
       this.service.getRecomendation(answeredQuestions).then(res => {
         this.recomendations = res.data.map(cityInfo => new Recomendation(cityInfo));
-        this.recomendation = this.recomendations.length > 0 ? this.recomendations[0]: undefined;
+        this.recomendation = this.recomendations.length > 0 ? this.recomendations[0] : undefined;
         console.log(this.recomendation)
         this.isLoading = false;
       });
@@ -113,7 +113,8 @@ export default {
   flex-wrap: wrap;
 }
 
-.container-form, .content {
+.container-form,
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -144,6 +145,7 @@ export default {
   border: 2px solid rgb(221, 221, 221);
   border-radius: 2%;
 }
+
 .result {
   margin-bottom: 10%;
   font-weight: bold;
@@ -155,15 +157,18 @@ export default {
   width: fit-content;
   font-size: 20pt;
 }
+
 .attributes {
   color: rgb(80, 80, 80);
   font-size: 20pt;
   text-align: start;
   margin-left: 5%;
 }
+
 .info-city {
   text-align: start;
 }
+
 .recomendation-button {
   margin-bottom: 2%;
 }
