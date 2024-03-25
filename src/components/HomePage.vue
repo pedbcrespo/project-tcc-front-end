@@ -1,6 +1,15 @@
 <template>
   <div class="home">
-    <title-header />
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">TCC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+        </div>
+    </nav>
     <div class="content">
       <div v-if="isFormVisible" class="container-form">
         <h2 class="title-form">Quiz</h2>
@@ -37,7 +46,6 @@
 </template>
 
 <script>
-import TitleHeader from './TitleHeader.vue';
 import BackendService from '@/service/backendService';
 import FormQuestion from './FormQuestion.vue';
 import Question from '@/model/AnsweredQuestion';
@@ -45,7 +53,7 @@ import Recomendation from '@/model/Recomendation';
 
 export default {
   name: 'home-page',
-  components: { TitleHeader, FormQuestion },
+  components: { FormQuestion },
   computed: {
     getFirstRecomendation() {
       return this.recomendation;
