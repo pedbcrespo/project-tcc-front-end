@@ -11,12 +11,19 @@
 </template>
 
 <script>
+// import { AttributeType } from '../enums/AttributeType';
+
 export default {
     props: ['question'],
     data() {
         return {
             selectedAlternative: null
         };
+    },
+    methods: {
+        updateAttributes() {
+
+        }
     },
     watch: {
         selectedAlternative(newValue) {

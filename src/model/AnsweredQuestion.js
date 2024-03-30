@@ -3,6 +3,7 @@ export default class Question {
         this.title = question.title;
         this.increase = question.increase;
         this.decrease = question.decrease;
+        this.subAttributes = question.subAttributes;
         this.alternatives = [1, 2, 3, 4, 5]
         this.answer = null;
         this.hoursLightEstiamte = 0;
