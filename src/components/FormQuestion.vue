@@ -23,11 +23,12 @@ export default {
         };
     },
     methods: {
-        updateAttributes() {
+        updateAttributes(newValue) {
             const subAttributes = this.question.subAttributes;
             subAttributes.forEach(att => {
                 const totalOptions = this.currentQuestion.alternatives.length;
-                const percent = (this.currentQuestion.answer+1)/totalOptions;
+                const answer = newValue;
+                const percent = (answer)/totalOptions;
                 const value = (ConstsType[att] * percent);
                 this.currentQuestion[att] = Number(value.toFixed(2));
             });
@@ -35,7 +36,7 @@ export default {
     },
     watch: {
         selectedAlternative(newValue) {
-            this.updateAttributes();
+            this.updateAttributes(newValue);
             this.$emit('update:question', {
                 ...this.currentQuestion,
                 answer: newValue
