@@ -85,7 +85,6 @@ export default {
       this.service.getRecomendation(answeredQuestions).then(res => {
         this.recomendations = res.data.map(cityInfo => new Recomendation(cityInfo));
         this.recomendation = this.recomendations.length > 0 ? this.recomendations[0] : undefined;
-        console.log(this.recomendation)
         this.isLoading = false;
       });
       this.isFormVisible = false;
