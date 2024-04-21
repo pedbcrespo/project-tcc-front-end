@@ -72,6 +72,7 @@ export default {
   mounted() {
     this.service.getQuestions().then(res => {
       this.questions = res.data.map(textQuestion => new Question(textQuestion))
+      console.log(this.questions)
     });
   },
   methods: {
