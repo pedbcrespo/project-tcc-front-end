@@ -30,10 +30,10 @@
             <h2 class="attributes"><b>Atributos</b></h2>
             <ul class="info-city">
               <li><b>IDH:</b> {{ getFirstRecomendation.idh }}</li>
-              <li><b>Custo de vida:</b> {{ getFirstRecomendation.avg_coust_living_price }}</li>
-              <li><b>Custo médio dos imóveis:</b> {{ getFirstRecomendation.avg_price }}</li>
-              <li><b>Acessibilidade de empresas:</b> {{ getFirstRecomendation.business_accessibility }}</li>
-              <li><b>Indice de entreterimento:</b> {{ getFirstRecomendation.recreation_rate }}</li>
+              <li><b>Custo de vida:</b> {{ formatPrice(getFirstRecomendation.avg_coust_living_price) }}</li>
+              <li><b>Custo médio dos imóveis:</b> {{ formatPrice(getFirstRecomendation.avg_price) }}</li>
+              <li><b>Acessibilidade de empresas:</b> {{ formatedPercent(getFirstRecomendation.business_accessibility) }}</li>
+              <li><b>Indice de entreterimento:</b> {{ getFirstRecomendation.recreation_rate }} %</li>
             </ul>
           </div>
           <div class="recomendation-button">
@@ -92,6 +92,17 @@ export default {
     },
     comeBack() {
       this.isFormVisible = true;
+    },
+    formatPrice(price) {
+      let priceString = price.toFixed(2).replace('.', '');
+      let integerPart = priceString.slice(0, -2);
+      let decimalPart = priceString.slice(-2);
+      integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return 'R$ ' + integerPart + ',' + decimalPart;
+    },
+    formatedPercent(percent) {
+      let formatedPercent = (percent * 100).toFixed(2);
+      return formatedPercent + ' %';
     }
   }
 }
