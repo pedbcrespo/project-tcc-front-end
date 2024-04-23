@@ -6,6 +6,6 @@ export default class Question {
         this.subAttributes = question.subAttributes;
         this.pontuations = question.pontuations;
         this.alternatives = [1, 2, 3, 4, 5]
-        this.answer = 1;
+        this.answer = null;
     }
 }

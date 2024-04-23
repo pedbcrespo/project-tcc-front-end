@@ -18,7 +18,7 @@ export default {
     props: ['question'],
     data() {
         return {
-            selectedAlternative: 1,
+            selectedAlternative: null,
             currentQuestion: this.question,
         };
     },
