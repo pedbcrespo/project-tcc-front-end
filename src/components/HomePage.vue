@@ -80,6 +80,7 @@ export default {
       this.questions[index] = updatedQuestion;
     },
     getRecomendation() {
+      if(this.questions.some(question => !question.answer)) return;
       this.isLoading = true;
       let answeredQuestions = this.questions.filter(question => question.answer)
       if (answeredQuestions.length == 0) return;
@@ -103,6 +104,9 @@ export default {
     formatedPercent(percent) {
       let formatedPercent = (percent * 100).toFixed(2);
       return formatedPercent + ' %';
+    },
+    maySubmit() {
+      return !this.questions.some(question => !question.answer);
     }
   }
 }
